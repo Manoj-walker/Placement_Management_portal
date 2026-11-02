@@ -1,0 +1,22 @@
+# Dependencies / build output
+node_modules/
+dist/
+target/
+.tools/
+
+# Local databases and secrets
+demo-db/
+server/wallet/
+.env
+.env.local
+
+# Logs and OS/editor files
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Runtime uploads (job descriptions) and bookkeeping
+server/uploads/
+*.pid

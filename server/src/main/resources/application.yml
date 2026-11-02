@@ -1,0 +1,51 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: placement-nit
+  datasource:
+    # Local MySQL. The `placement_nit` database is created automatically on
+    # first run (createDatabaseIfNotExist), as are its tables (DatabaseInitializer).
+    url: ${DB_URL:jdbc:mysql://localhost:3306/placement_nit?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:manoj@123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 15000
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USER:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  jackson:
+    default-property-inclusion: non_null
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:placement-nit-dev-secret-change-me-please-0123456789abcdef}
+    expiration-hours: 12
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+  mail:
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:no-reply@placement.nit.edu}
+  college-email-domain: ${COLLEGE_EMAIL_DOMAIN:nit.edu}
+  jd:
+    # Uploaded job descriptions are stored on disk; paths go into JD_FILE_PATH.
+    storage-dir: ${JD_STORAGE_DIR:uploads}
+  reminders:
+    cron: ${REMINDER_CRON:0 0 8 * * *}
+
+logging:
+  level:
+    edu.nit.placement: INFO

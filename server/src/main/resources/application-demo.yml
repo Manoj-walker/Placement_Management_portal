@@ -1,0 +1,16 @@
+# Demo profile — just stubs SMTP so nothing tries to reach a real mail server.
+# The datasource (local MySQL placement_nit) is inherited from application.yml.
+#   ./mvnw spring-boot:run -Dspring-boot.run.profiles=demo
+spring:
+  mail:
+    host: localhost
+    port: 3025
+
+app:
+  mail:
+    enabled: false
+    from: no-reply@placement.nit.edu
+
+logging:
+  level:
+    edu.nit.placement: INFO
